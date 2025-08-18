@@ -1,6 +1,8 @@
-tuples = [(10, 20, 40), (40, 50, 60), (70, 80, 90), (10, 90), (1, 2, 3, 4), (5, 6, 10, 2, 1, 77)]
-new_tuples = []
-for e in tuples:
-    e_tmp = e[:-1] + (100,)
-    new_tuples.append(e_tmp)
-print(new_tuples)
+numbers = ((10, 10, 10, 12), (30, 45, 56, 45), (81, 80, 39, 32), (1, 2, 3, 4), (90, 10))
+
+lst_sum = []
+
+for i in range(len(numbers)):
+    lst_sum.append(sum(numbers[i])/len(numbers[i]))
+    
+print(lst_sum)   

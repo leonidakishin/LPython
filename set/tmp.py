@@ -1,4 +1,3 @@
-myset = {'python'}
 
-
-print(myset)
+print(4/7*100)
+print(f'Из всех попыток {int(round(0.5714285714285714,2)*100)}% верных')

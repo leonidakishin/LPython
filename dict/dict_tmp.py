@@ -1,11 +1,26 @@
-student_ids = ['S001', 'S002', 'S003', 'S004', 'S005', 'S006', 'S007', 'S008', 'S009', 'S010', 'S011', 'S012', 'S013'] 
-student_names = ['Camila Rodriguez', 'Juan Cruz', 'Dan Richards', 'Sam Boyle', 'Batista Cesare', 'Francesco Totti', 'Khalid Hussain', 'Ethan Hawke', 'David Bowman', 'James Milner', 'Michael Owen', 'Gary Oldman', 'Tom Hardy'] 
-student_grades = [86, 98, 89, 92, 45, 67, 89, 90, 100, 98, 10, 96, 93]
-
-result = [{student_ids[i]: {student_names[i]: student_grades[i]}} for i in range(len(student_ids))]
+n_strok = int(input())
 
 
-print(result)
+dct = {}
+for i in range(n_strok):
+    lst = input().split()
+    
+    if lst[0] in dct.keys():
+        dct[lst[0]] += lst[1] +' '+ lst[2] + '&'
+    else:
+        dct[lst[0]] = lst[1] +' '+ lst[2] + '&'
+    lst.clear()
+
+for k,v in dct.items():
+    dct[k] = v.rstrip('&')
 
 
-   
+for k,v in sorted(dct.items()):
+    print(k+':')
+    v_sort = v.split('&')
+    v_sort.sort()
+    print(*v_sort,sep='\n')
+
+
+                
+    

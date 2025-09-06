@@ -1,34 +1,30 @@
-    import random as r3
-    #ucheniki_lst = ['Светлана Зуева', 'Аркадий Белых', 'Борис Боков']
-    n = int(input())
-    ucheniki_lst = [input() for i in range(n)]
-    n = 3
-    ucheniki_set = set(ucheniki_lst)
+import random as r
 
-    dct_pary = {}
+dg = '23456789'
+alth_low = 'qwertyuipasdfghjkzxcvbnm'
+alth_upp = 'QWERTYUOPASDFGHJKLZXCVBNM'
+all_symb = dg + alth_low + alth_upp
 
-    for i in range(n-2):
-        set_i = set()
-        set_i.add(ucheniki_lst[i])  
-    
-        tmp_set = ucheniki_set - set_i
-        dct_pary[ucheniki_lst[i]] = tmp_set.pop()
-        ucheniki_set.remove(dct_pary[ucheniki_lst[i]])
-        tmp_set.clear()
+n, m = int(input()), int(input())
 
-    print(ucheniki_set,'ucheniki_seti') 
-
-    uchenik_tmp1 = ucheniki_set.pop()
-    print(ucheniki_set,'ucheniki_set') 
-    uchenik_tmp2 = ucheniki_set.pop()
-    if ucheniki_lst[-2] !=  uchenik_tmp1 and ucheniki_lst[-1] !=  uchenik_tmp2:
-        dct_pary[ucheniki_lst[-2]] = uchenik_tmp1
-        dct_pary[ucheniki_lst[-1]] = uchenik_tmp2
-    elif ucheniki_lst[-2] ==  uchenik_tmp1 or ucheniki_lst[-1] ==  uchenik_tmp2:
-        dct_pary[ucheniki_lst[-2]] = uchenik_tmp2
-        dct_pary[ucheniki_lst[-1]] = uchenik_tmp1   
+pwd = ''
+i = 0
+while i != n:
+    for j in range(m):
+        pwd += r.choice(all_symb)
+    pwd_set = set(pwd)
+    dg_set = set(dg)
+    alth_low_set = set(alth_low)
+    alth_upp_set = set(alth_upp)
+    if pwd_set&dg_set != set() and pwd_set&alth_low_set != set() and pwd_set&alth_upp_set != set():
+        print(pwd)
+        
+        i +=1
+    pwd = ''
 
 
 
-    print(dct_pary)
+
+
+
 

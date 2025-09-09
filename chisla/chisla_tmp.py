@@ -1,7 +1,10 @@
-from decimal import *
-num = Decimal(input())
+n = int(input())
+z1 = complex(input())
+z2 = complex(input())
+z1_ = z1.conjugate()
+z2_ = z2.conjugate()
 
-s = str(num)
-lst = [int(i) for i in s if i != '.']
+print(z1**n + z2**n + z1_**n + z2_**n)
+
    
-print(max(lst) + min(lst))    
+

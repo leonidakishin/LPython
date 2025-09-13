@@ -1,25 +1,8 @@
-def map(function, items):
-    result = []
-    for item in items:
-        result.append(function(item))
-    return result
+data = [(19542209, 'New York'), (4887871, 'Alabama'), (1420491, 'Hawaii'), (626299, 'Vermont'), (1805832, 'West Virginia'), (39865590, 'California'), (11799448, 'Ohio'), (10711908, 'Georgia'), (10077331, 'Michigan'), (10439388, 'Virginia'), (7705281, 'Washington'), (7151502, 'Arizona'), (7029917, 'Massachusetts'), (6910840, 'Tennessee')]
 
-def add3(x):
-    return x + 3
+data1 = sorted(data, key=lambda x: x[1][-1],reverse=True)
 
-
-def mul7(x):
-    return x * 7
-
-def func_apply(func,items):
-    result = []
-    for e in items:
-        result.append(func(e))
-    return result    
-
-print(func_apply(mul7, [1, 2, 3, 4, 5, 6]))
-print(func_apply(add3, [1, 2, 3, 4, 5, 6]))
-print(func_apply(str, [1, 2, 3, 4, 5, 6]))
-
+for e in data1:
+    print(f'{e[1]}: {e[0]}')
 
 

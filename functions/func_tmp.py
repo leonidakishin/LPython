@@ -1,8 +1,9 @@
-data = [(19542209, 'New York'), (4887871, 'Alabama'), (1420491, 'Hawaii'), (626299, 'Vermont'), (1805832, 'West Virginia'), (39865590, 'California'), (11799448, 'Ohio'), (10711908, 'Georgia'), (10077331, 'Michigan'), (10439388, 'Virginia'), (7705281, 'Washington'), (7151502, 'Arizona'), (7029917, 'Massachusetts'), (6910840, 'Tennessee')]
-
-data1 = sorted(data, key=lambda x: x[1][-1],reverse=True)
-
-for e in data1:
-    print(f'{e[1]}: {e[0]}')
+absc = [float(i) for i in input().split()] 
+ordi = [float(i) for i in input().split()] 
+appl = [float(i) for i in input().split()]
 
 
+#print(*zip(absc, ordi, appl))
+print(*map(lambda x: True if x[0]**2+x[1]**2+x[2]**2 <= 4 else False,zip(absc, ordi, appl)))
+
+print(all(map(lambda x: True if x[0]**2+x[1]**2+x[2]**2 <= 4 else False,zip(absc, ordi, appl))))

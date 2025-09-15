@@ -1,9 +1,15 @@
-absc = [float(i) for i in input().split()] 
-ordi = [float(i) for i in input().split()] 
-appl = [float(i) for i in input().split()]
+n = int(input())
+lst_global = []
+lst2 = []
+for i in range(n):
+    k = int(input())
+    for j in range(k):
+        lst = [j for j in input().split()]
+        lst2.append(lst[1]) 
+    lst_global.append(list(lst2))
+    lst2.clear()
 
-
-#print(*zip(absc, ordi, appl))
-print(*map(lambda x: True if x[0]**2+x[1]**2+x[2]**2 <= 4 else False,zip(absc, ordi, appl)))
-
-print(all(map(lambda x: True if x[0]**2+x[1]**2+x[2]**2 <= 4 else False,zip(absc, ordi, appl))))
+if all(map(lambda x: True if '5' in x else False,lst_global)):
+    print('YES')
+else:
+    print('NO')

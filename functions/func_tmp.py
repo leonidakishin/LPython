@@ -1,15 +1,9 @@
-n = int(input())
-lst_global = []
-lst2 = []
-for i in range(n):
-    k = int(input())
-    for j in range(k):
-        lst = [j for j in input().split()]
-        lst2.append(lst[1]) 
-    lst_global.append(list(lst2))
-    lst2.clear()
+def ip_10(ip):
+    lst_ip = [int(i) for i in ip.split('.')]
+    return lst_ip[0]*256**3 + lst_ip[1]*256**2+lst_ip[2]*256+lst_ip[3]
 
-if all(map(lambda x: True if '5' in x else False,lst_global)):
-    print('YES')
-else:
-    print('NO')
+n = int(input())
+lst = []
+lst = [input() for i in range(n) ]
+lst = sorted(lst)
+print(*sorted(lst,key=ip_10))

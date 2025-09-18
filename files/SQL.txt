@@ -1,0 +1,71 @@
+with sales_cte as (select product, sum(quantity) as quantity
+from sales
+group by product
+order by quantity desc
+limit 3                  )
+
+select * 
+from sales_cte
+union
+select 'другие', sum(quantity)
+from sales
+where product not in (select product
+from sales_cte)
+
+
+
+
+with cte as (
+select product, sum(quantity) as q,
+       rank() over (order by sum(quantity) desc) as r        
+from sales
+group by product
+)
+
+select 
+case
+    when r <= 3 then product
+    else 'другие'
+end as product, sum(q) as quantity
+from cte
+group by 1 --работает
+--group by product --не работает
+
+
+with cte as (
+select user_session,event_time,event_type
+from beauty_ecom_events_all beea1
+where user_session is not null
+and event_time = (select min(event_time) from beauty_ecom_events_all beea2 where beea2.user_session = beea1.user_session group by beea2.user_session)
+)
+
+
+select first_value_,count(*)
+from
+(
+select user_session,first_value(event_type) over (partition by user_session order by event_time) as first_value_
+from cte 
+)
+group by first_value_
+
+
+with cte as(select user_session,event_time,event_type,
+first_value(event_time) over (partition by user_session order by event_time) as first_value_
+from beauty_ecom_events_all beea1
+where user_session is not null
+)
+
+select event_type, count(*) 
+from cte
+where event_time = first_value_
+group by 1
+
+
+with cte as(
+select substring(event_time,1,10) day_, event_time, user_id
+from beauty_ecom_events_all
+)
+
+select distinct first_value(user_id) over (partition by day_ order by event_time desc)
+from cte
+where day_ in ('2019-10-01','2019-10-05') 

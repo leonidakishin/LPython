@@ -1,6 +1,4 @@
-Which of the following functions do you use to write data in the binary format?
-Python provides a wide range of built-in functions for file handling. It makes it really easy to create, update, read, and delete files.
-Open a File
-Remember! While specifying the exact path
-для указания внезапной остановки повествования;
-Иногда среднее тире называют коротким тире
+    for line in file:
+        lst_dict_value = file.readline().strip().split(',')
+        dict = dict(zip(lst_dict_keys,lst_dict_value))
+        lst_dicts.append(dict)

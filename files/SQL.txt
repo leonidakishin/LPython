@@ -68,4 +68,52 @@ from beauty_ecom_events_all
 
 select distinct first_value(user_id) over (partition by day_ order by event_time desc)
 from cte
-where day_ in ('2019-10-01','2019-10-05') 
+where day_ in ('2019-10-01','2019-10-05') \
+
+
+
+
+with cte as(select user_session, 
+first_value(event_type) over(partition by user_session order by event_time) first_event,
+lead(event_type) over (partition by user_session order by event_time) second_event
+from beauty_ecom_events_all 
+where user_session is not null
+)
+
+select event_time, event_type
+from beauty_ecom_events_all
+where user_session = '000013d6-68a4-40cf-9452-6577dbfab515'
+order by 1
+
+
+with cte as(select event_time, user_session, user_id,
+first_value(event_type) over(partition by user_session order by event_time) first_event,
+lead(event_type) over (partition by user_session order by event_time) second_event
+from beauty_ecom_events_all 
+where user_session is not null
+)
+
+select count(distinct user_id) 
+from cte c1
+join 
+(select user_session, min(event_time)  as min_event_time
+from cte
+group by user_session) c2
+on (c1.user_session = c2.user_session and c1.event_time = c2.min_event_time)
+where first_event = 'view' and second_event = 'cart'
+
+
+with cte as (
+select *, substring(event_time,1,10) as day1_
+from beauty_ecom_events_all
+)
+
+
+select *
+from cte c1
+join 
+(select substring(event_time,1,10) as day2_, max(event_time)  as max_event_time
+from beauty_ecom_events_all
+group by 1) c2
+on (c1.day1_ = c2.day2_ and c1.event_time = c2.max_event_time)
+where event_type = 'purchase'
